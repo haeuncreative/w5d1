@@ -1,14 +1,24 @@
 class MaxIntSet
   def initialize(max)
+    @max = (0..max)
+    max_arr = @max.to_a
+    @max_val = max_arr[-1]
+    @store = Array.new(max, false)
   end
 
   def insert(num)
+    if num < 0 || num > @max_val
+      raise "Out of bounds"
+    end
+    @store << num
+    
   end
 
   def remove(num)
   end
 
   def include?(num)
+    @store.include?(num)
   end
 
   private
