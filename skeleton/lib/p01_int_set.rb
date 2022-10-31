@@ -1,4 +1,5 @@
 class MaxIntSet
+  attr_reader :store
   def initialize(max)
     @max = (0..max)
     max_arr = @max.to_a
@@ -10,15 +11,20 @@ class MaxIntSet
     if num < 0 || num > @max_val
       raise "Out of bounds"
     end
-    @store << num
-    
+    # @store << num
+    @store[num] = true
   end
 
   def remove(num)
+    @store[num] = false
   end
 
   def include?(num)
-    @store.include?(num)
+    if @store[num] == true
+      return true
+    else
+      return false
+    end
   end
 
   private
