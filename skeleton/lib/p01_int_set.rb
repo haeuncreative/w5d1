@@ -30,6 +30,7 @@ class MaxIntSet
   private
 
   def is_valid?(num)
+
   end
 
   def validate!(num)
@@ -43,18 +44,28 @@ class IntSet
   end
 
   def insert(num)
+    if @store[num % @store.length].push(num)
+      return true
+    else
+      return false
+    end
+  
+
   end
 
   def remove(num)
   end
 
   def include?(num)
+    @store[num].include?(num)
   end
 
   private
 
   def [](num)
+    index = num % @store.length
     # optional but useful; return the bucket corresponding to `num`
+    @store[index]
   end
 
   def num_buckets
