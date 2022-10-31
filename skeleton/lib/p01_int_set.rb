@@ -44,20 +44,16 @@ class IntSet
   end
 
   def insert(num)
-    if @store[num % @store.length].push(num)
-      return true
-    else
-      return false
-    end
-  
-
+    self[num] << num
+    # @store.include?(num)
   end
 
   def remove(num)
+    @store[num].delete(num)
   end
 
   def include?(num)
-    @store[num].include?(num)
+    self[num].include?(num)
   end
 
   private
@@ -82,17 +78,27 @@ class ResizingIntSet
   end
 
   def insert(num)
+    if !self.include?(num)
+      self[num] << num
+    end
   end
 
   def remove(num)
+    if self.include?(num)
+      self[num].delete(num)
+    end
   end
 
   def include?(num)
+    self[num].include?(num)
   end
 
   private
 
   def [](num)
+    index = num % @store.length
+    # optional but useful; return the bucket corresponding to `num`
+    @store[index]
     # optional but useful; return the bucket corresponding to `num`
   end
 
